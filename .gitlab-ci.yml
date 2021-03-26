@@ -1,0 +1,13 @@
+stages:
+  - tests
+  - builds
+
+tests:
+  stage: tests
+  script:
+    - make tests
+
+builds:
+  stage: builds
+  script:
+    - make build

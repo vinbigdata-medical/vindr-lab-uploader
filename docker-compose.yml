@@ -1,0 +1,28 @@
+version: "3.3"
+
+services:
+  vinlab-upload-dicom:
+    build: .
+    container_name: vinlab-upload-dicom
+    ports:
+      - 8081:8081
+    environment:
+      GUNICORN_WORKERS: 8
+      GUNICORN_PORT: 8081
+      ENVVAR_PREFIX_FOR_DYNACONF: APP
+      ENV_FOR_DYNACONF: production
+      APP_LOG_LEVEL: "INFO"
+      APP_ORTHANC_API_URI: ""
+      APP_REDIS_URI: ""
+      APP_REDIS_CACHE_TIME: "600"
+      APP_ELASTICSEARCH_HOST: ""
+      APP_ES_STUDIES_INDEX_PREFIX: ""
+      APP_ES_COUNTER_INDEX: ""
+      VINDR_LAB_API: ""
+      PUBLIC_KEY_PATH: ""
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "10"
+        max-size: 20m
