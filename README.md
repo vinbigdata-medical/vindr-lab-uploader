@@ -2,11 +2,11 @@
 
 # VinDr Lab / DICOM Uploader
 
-DICOM Uploader is a part of the VinDr Lab project.
+DICOM Uploader is a part of the VinDr Lab project. Like Robin alongside with Batman (main API), it modifies and transfers the DICOM (an image saved in the Digital Imaging and Communications in Medicine format) files to database.
 
 ## What does this project do?
 
-Like a satellite service around the API, it modifies and transfers the DICOM file (an image saved in the Digital Imaging and Communications in Medicine format) to database.
+As metioned above, this collaborates with the API, helps you to upload the DICOM files, configures them with some additional information. You can ask us that: Why do we need another side-kick service that performs the same as an API? To be clear, Golang now has some limitations on working with DICOM file, on the other hand, Pythonb has dark-and-mysterious tools which can do these things for us.
 
 ## Project tree
 
