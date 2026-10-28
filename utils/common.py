@@ -8,7 +8,7 @@ from utils import consts
 def convert_dataset_to_bytes(dataset):
     try:
         buffer = BytesIO()
-        dataset.save_as(buffer, write_like_original=True)
+        dataset.save_as(buffer, enforce_file_format=False)
         buffer.seek(0)
         return buffer.read()
     except Exception as ex:

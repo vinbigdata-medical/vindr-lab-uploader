@@ -47,7 +47,11 @@ def get_authentication(authorization: str = Header(None), r: Request = Request):
             public_key = load_public_key()
 
             decoded = jwt.decode(
-                bearer, key=public_key, algorithms=["RS256"], audience=settings.KC_VERIFY_AUDIENCE, verify=verify
+                bearer,
+                key=public_key,
+                algorithms=["RS256"],
+                audience=settings.KC_VERIFY_AUDIENCE,
+                options={"verify_signature": verify},
             )
             user.username = decoded["preferred_username"]
             user.auth_info: decoded
@@ -80,7 +84,13 @@ async def verify_scopes(
     try:
         public_key = load_public_key()
 
-        payload = jwt.decode(token, public_key, algorithms=["RS256"], audience=settings.KC_VERIFY_AUDIENCE,verify=verify)
+        payload = jwt.decode(
+            token,
+            public_key,
+            algorithms=["RS256"],
+            audience=settings.KC_VERIFY_AUDIENCE,
+            options={"verify_signature": verify},
+        )
         username: str = payload.get("preferred_username")
         sub: str = payload.get("sub")
         if username is None:
