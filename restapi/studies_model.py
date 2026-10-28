@@ -1,7 +1,7 @@
 from fastapi.responses import JSONResponse
 from connection import oc, oc2, redis
 from utils import dcom_utils, models, common, consts
-from pydicom import tag, dataset, valuerep
+from pydicom import tag, dataset, uid, valuerep
 from loguru import logger
 from dbal import es_store
 import requests
@@ -126,7 +126,7 @@ def _convert_value(v):
         cv = str(v)
     elif t == valuerep.IS:
         cv = int(v)
-    elif t == valuerep.UID:
+    elif t == uid.UID:
         cv = v
     else:
         cv = repr(v)
